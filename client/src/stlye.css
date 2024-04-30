@@ -1,0 +1,112 @@
+/* styles.css */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+
+
+
+header {
+  background-color: #e8a2c3;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.nav-container {
+  /* Logo styles */
+.logo {
+  padding: 10px; /* Adjust as needed */
+}
+
+.logo img {
+  width: 50px; /* Adjust the width of the logo */
+  height: auto; /* Maintain aspect ratio */
+}
+
+  background-color: #d18b9f;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  background-color: #c47a8f;
+}
+.signup_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.signup_form {
+  border: 1px solid magenta;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+}
+.sign_form form input{
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 2px;
+  width: 100%;
+  border: 1px solid rgb(61, 226, 229);
+}  
+
+.header-title {
+  padding: 20px 0;
+  justify-content: center;
+}
+
+.about-cane-corso {
+  padding: 20px;
+  text-align: center;
+}
+
+.about-cane-corso h2 {
+  color: #333;
+}
+
+.about-cane-corso img {
+  width: 100%;
+  max-width:600px;
+  height: auto;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+  nav ul li {
+      display: block;
+      text-align: center;
+  }
+}
