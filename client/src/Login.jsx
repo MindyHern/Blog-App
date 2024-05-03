@@ -1,16 +1,22 @@
 import React from 'react'
 import './style.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Login() {
       const [email, setEmail] = useState()
       const [password, setPassword] = useState()
+      const navigate = useNavigate()
 
+      axios.defaults.withCredentials = true;
       const handelSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:3001/register', {username, email, password})
-        .then(res => console.log(res))
+        axios.post('http://localhost:3001/login', {email, password})
+        .then(res => {
+            if(res.data === "Success") {
+                window.location.href ="/"
+            }
+        })    
         .catch(err => console.log(err))
       }
     return (
@@ -21,12 +27,14 @@ function Login() {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email">Email:</label><br />
-                        <input type="email" placeholder= 'Enter Email'/>
+                        <input type="email" placeholder= 'Enter Email'
+                        onChange={e => setEmail(e.target.value)}/>
                     </div>
                     <br />
                     <div>
                         <label htmlFor="password">Password:</label><br />
-                        <input type="password" placeholder='********'/>
+                        <input type="password" placeholder='********'
+                        onChange={e => setPassword(e.target.value)}/>
                     </div>
                     <button className= 'signup_btn'>Login</button>
                 </form>

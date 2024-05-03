@@ -10,9 +10,6 @@ body {
   font-family: Arial, sans-serif;
   background: #fff;
 }
-
-
-
 header {
   background-color: #e8a2c3;
   color: #fff;
@@ -63,11 +60,20 @@ nav ul li a:hover {
   min-height: 90vh;
 }
 
-.signup_form {
+.signup_form button {
   border: 1px solid magenta;
   padding: 20px;
   border-radius: 10px;
   width: 30%;
+}
+.signup_btn {
+  margin-top: 8px;
+}
+.btn_input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: bolder;
 }
 .sign_form form input{
   padding: 8px;
@@ -82,6 +88,24 @@ nav ul li a:hover {
   justify-content: center;
 }
 
+.post_form{
+  width: 50%;
+  border: 1px solid gainsboro;
+  padding: 20px;
+}
+.post_form input, .post_form textarea, .post_form button {
+  width: 100%;
+  margin: 10px 0px;
+  padding: 8px;
+}
+.post-_form .file{
+  border: 1px solid gainsboro;
+}
+.post-Form button{
+  cursor: pointer;
+  background-color: aquamarine;
+  color: aliceblue;
+}
 .about-cane-corso {
   padding: 20px;
   text-align: center;
