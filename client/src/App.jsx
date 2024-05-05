@@ -5,6 +5,9 @@ import Login from "./Login"
 import Home from "./Home"
 import { createContext, useEffect, useState } from "react"
 import axios from "axios"
+import CreatePost from "./CreatePost"
+import Post from "./post"
+import EditPost from "./EditPost"
 
 export const userContext = createContext()
 
@@ -30,8 +33,8 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/create" element={<CreatePost />}></Route>
-        
-
+        <Route path="/post/:id" element={<Post />}></Route>
+        <Route path="/editpost/:id" element={<EditPost />}></Route>
       </Routes>
     </BrowserRouter>
     </userContext.Provider>

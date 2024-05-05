@@ -20,8 +20,12 @@ function Navbar() {
      <div className='navbar-header'>
          <div><h3>Tried & True Cane Corso Blog</h3></div>
          <div>
-                <a href="" className= 'link'>Home</a>
-                <Link to="/create" className='link'>Create</Link>
+               <Link to="/" className='link'>Home</Link>
+               {
+                   user.username ?
+                       <Link to="/create" className='link'>Create</Link>
+                   : <></>
+               }
                 <a href="">Blog</a>
                 <a href="">Products</a>
                 <a href="">About</a>

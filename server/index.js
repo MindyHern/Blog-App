@@ -6,7 +6,8 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const multer = require('multer')
 const path = require('path')
-const UserModel = require('./models.UserModel')
+const UserModel = require('./models/UserModel')
+const PostModel = require('./models/PostModel')
 
 const app = express()
 app.use(express.json())
@@ -16,6 +17,7 @@ app.use(cors({
     credentials: true
 }))
 app.use(cookieParser())
+app.use(express.static('public'))
 
 mongoose.connect("mongodb+srv://mindyhern8976:698976MaOH79@cluster0.cf1glxh.mongodb.net/");
 
@@ -39,6 +41,7 @@ const verifyUser = (req, res, next) => {
 app.get('/', verifyUser, (req, res) => {
     return res.json({email: req.email, username: req.username})
 })
+
 
 app.post('/register', (req, res) => {
     const {username, email, password} =req.body;
@@ -70,6 +73,58 @@ app.post('/login', (req, res) => {
             res.json("User does not exist")
         }
     })
+})
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Public/Images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storage
+})
+
+app.post('/create', verifyUser, upload.single('file'), (req, res) => {
+   PostModel.create({title:req.body.title,
+        description: req.body.description,
+        file: req.file.filename, email: req.body.email})
+        .then(result => res.json("Success"))
+        .catch(err => res.json(err))
+})
+
+app.get('/getposts', (req, res) => {
+    PostModel.find()
+    .then(posts => res.json(posts))
+    .catch(err => res.json(err))
+})
+
+app.get('/getpostbyid/:id', (req, res) => {
+    const id = req.params.id
+    PostModel.findById({_id: id,
+        title: req.body.title,
+        description: req.body.description}
+    )
+
+})
+
+app.put('/editpost/:id', (req, res) => {
+    const id = req.params.id;
+    PostModel.findByIdAndUpdate(
+        {_id: id,
+        title: req.body.title,
+        description: req.body.description}
+        ).then(result => res.json("Success"))
+        .catch(err => res.json(err))
+})
+
+app.delete('/deletepost/:id', (req, res) => {
+    PostModel.findByIdAndDelete({_id: req.params.id})
+    .then(result => res.json("Success"))
+    .catch(err => res.json(err))
 })
 
 app.get('/logout', (req, res) => {
